@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 class AppTheme {
@@ -22,6 +23,9 @@ class AppTheme {
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
+
+  static Brightness get currentSystemBrightness =>
+      SchedulerBinding.instance.window.platformBrightness;
 
   static final darkTheme = ThemeData(
     colorScheme: ColorScheme.dark().copyWith(
