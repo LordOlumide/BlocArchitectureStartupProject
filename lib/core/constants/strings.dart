@@ -1,6 +1,6 @@
 class Strings {
   // App
-  static final appTitle = 'App Name';
+  static final appTitle = 'Counter App';
 
   // HomeScreen
   static final homeScreenTitle = 'Home Screen';

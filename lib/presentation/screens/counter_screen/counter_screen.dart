@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/strings.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key, required this.title}) : super(key: key);
+class CounterScreen extends StatelessWidget {
+  CounterScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

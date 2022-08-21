@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants/strings.dart';
 import '../../core/exceptions/route_exception.dart';
-import '../screens/home_screen/home_screen.dart';
+import '../screens/counter_screen/counter_screen.dart';
 
 class AppRouter {
-  static const String home = '/';
+  static const String home = 'counter_screen';
 
   const AppRouter._();
 
@@ -13,7 +13,7 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          builder: (_) => HomeScreen(
+          builder: (_) => CounterScreen(
             title: Strings.homeScreenTitle,
           ),
         );

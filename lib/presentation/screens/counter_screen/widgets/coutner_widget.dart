@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-class HomeWidget extends StatelessWidget {
+class CounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container();
