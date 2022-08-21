@@ -1,5 +1,5 @@
 name: bloc_architecture_app
-description: A Flutetr Bloc Architecture project.
+description: A Flutter Bloc Architecture project.
 
 publish_to: 'none'
 
@@ -11,10 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bloc: ^7.0.0
-  cupertino_icons: ^1.0.0
-  flutter_bloc: ^7.0.0
-  hydrated_bloc: ^7.0.0
+  bloc: ^8.1.0
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.1
+  hydrated_bloc: ^8.1.0
 
 dev_dependencies:
   flutter_test:
