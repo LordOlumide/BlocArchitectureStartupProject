@@ -19,6 +19,7 @@ dependencies:
   animated_background: ^2.0.0
   flare_flutter: ^3.0.2
   path_provider: ^2.0.11
+  animate_do: ^2.1.0
 
 dev_dependencies:
   flutter_test:
