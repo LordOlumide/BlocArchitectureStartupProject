@@ -162,36 +162,19 @@ class _Stepper2State extends State<CounterSlider>
 
   void _onPanEnd(DragEndDetails details) {
     _controller.stop();
-    bool isHor = widget.direction == Axis.horizontal;
-    bool changed = false;
-    if (_controller.value <= -0.20) {
-      setState(() => isHor ? _value-- : _value++);
-      changed = true;
-    } else if (_controller.value >= 0.20) {
-      setState(() => isHor ? _value++ : _value--);
-      changed = true;
-    }
-    if (widget.withSpring) {
-      final SpringDescription _kDefaultSpring =
-          new SpringDescription.withDampingRatio(
-        mass: 0.9,
-        stiffness: 250.0,
-        ratio: 0.6,
-      );
-      if (widget.direction == Axis.horizontal) {
-        _controller.animateWith(
-            SpringSimulation(_kDefaultSpring, _startAnimationPosX, 0.0, 0.0));
-      } else {
-        _controller.animateWith(
-            SpringSimulation(_kDefaultSpring, _startAnimationPosY, 0.0, 0.0));
-      }
-    } else {
-      _controller.animateTo(0.0,
-          curve: Curves.bounceOut, duration: Duration(milliseconds: 500));
-    }
 
-    if (changed && widget.onChanged != null) {
-      widget.onChanged(_value);
-    }
+    if (_controller.value <= -0.20) {
+      // setState(() => isHor ? _value-- : _value++);
+    } else if (_controller.value >= 0.20) {}
+
+    final SpringDescription _kDefaultSpring =
+        new SpringDescription.withDampingRatio(
+      mass: 0.9,
+      stiffness: 250.0,
+      ratio: 0.6,
+    );
+    _controller.animateWith(
+        SpringSimulation(_kDefaultSpring, _startAnimationPosX, 0.0, 0.0));
+
   }
 }
