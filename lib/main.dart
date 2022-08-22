@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:sizer/sizer.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
@@ -19,7 +21,12 @@ void main() async {
   Bloc.observer = AppBlocObserver();
 
   HydratedBlocOverrides.runZoned(
-    () => runApp(App()),
+    () => runApp(DevicePreview(
+      enabled: false, // Production mode
+      builder: (context) {
+        return App();
+      }
+    )),
     storage: storage,
   );
 }
@@ -71,15 +78,22 @@ class _CounterAppState extends State<CounterApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: Strings.appTitle,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: context.select<ThemeCubit, ThemeMode>(
-          (ThemeCubit cubit) => cubit.state.themeMode),
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRouter.home,
-      onGenerateRoute: AppRouter.onGenerateRoute,
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          title: Strings.appTitle,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: context.select<ThemeCubit, ThemeMode>(
+                  (ThemeCubit cubit) => cubit.state.themeMode),
+          debugShowCheckedModeBanner: false,
+          initialRoute: AppRouter.home,
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          useInheritedMediaQuery: true,
+          builder: DevicePreview.appBuilder,
+          locale: DevicePreview.locale(context),
+        );
+      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'widgets/animated_background.dart';
 import 'widgets/counter_slider.dart';
 import 'widgets/counter_widget.dart';
@@ -13,6 +14,17 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> with TickerProviderStateMixin{
+
+  @override
+  void initState() {
+    super.initState();
+    // kScreenHeight = SchedulerBinding.instance.window.physicalSize.height;
+    // kScreenWidth = SchedulerBinding.instance.window.physicalSize.width;
+
+    // kScreenHeight = MediaQuery.of(context).size.height;
+    // kScreenWidth = MediaQuery.of(context).size.width;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +34,14 @@ class _CounterScreenState extends State<CounterScreen> with TickerProviderStateM
         children: [
           CustomAnimatedBackground(tickerProvider: this),
           Positioned(
-            bottom: 50,
+            bottom: 10.0.h,
             child: CounterSlider(
               initialValue: 0,
               onChanged: (val) {},
             ),
           ),
           Positioned(
-            top: 100,
+            top: 10.0.h,
             child: CounterContainer(),
           ),
         ],

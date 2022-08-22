@@ -2,6 +2,7 @@ import 'package:bloc_architecture_app/logic/cubit/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 
 /// the concept of the widget inspired
 /// from [Nikolay Kuchkarov](https://dribbble.com/shots/3368130-Stepper-Touch).
@@ -85,57 +86,57 @@ class _Stepper2State extends State<CounterSlider>
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      child: Container(
-        width: 280.0,
-        height: 120.0,
-        child: Material(
-          type: MaterialType.canvas,
-          clipBehavior: Clip.antiAlias,
-          borderRadius: BorderRadius.circular(60.0),
-          color: Colors.white.withOpacity(0.2),
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Positioned(
-                left: widget.direction == Axis.horizontal ? 10.0 : null,
-                bottom: widget.direction == Axis.horizontal ? null : 10.0,
-                child: Icon(Icons.remove,
-                    size: 40.0,
-                    color: Theme.of(context).iconTheme.color!.withOpacity(0.7)),
-              ),
-              Positioned(
-                right: widget.direction == Axis.horizontal ? 10.0 : null,
-                top: widget.direction == Axis.horizontal ? null : 10.0,
-                child: Icon(Icons.add,
-                    size: 40.0,
-                    color: Theme.of(context).iconTheme.color!.withOpacity(0.7)),
-              ),
-              GestureDetector(
-                onHorizontalDragStart: _onPanStart,
-                onHorizontalDragUpdate: _onPanUpdate,
-                onHorizontalDragEnd: _onPanEnd,
-                child: SlideTransition(
-                  position: _animation,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Material(
-                      color: Theme.of(context).colorScheme.secondary,
-                      shape: const CircleBorder(),
-                      elevation: 5.0,
-                      child: Center(
-                        child: Icon(
-                          Icons.trip_origin,
-                          size: 40,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
+    return Container(
+      width: SizerUtil.deviceType == DeviceType.tablet ? 40.0.w : 55.0.w,
+      height: 12.0.h,
+      child: Material(
+        type: MaterialType.canvas,
+        clipBehavior: Clip.antiAlias,
+        borderRadius: BorderRadius.circular(60.0),
+        color: Colors.white.withOpacity(0.2),
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Positioned(
+              left: widget.direction == Axis.horizontal ? 10.0 : null,
+              bottom: widget.direction == Axis.horizontal ? null : 10.0,
+              child: Icon(Icons.remove,
+                  size: 40.0,
+                  color: Theme.of(context).iconTheme.color!.withOpacity(0.7)),
+            ),
+            Positioned(
+              right: widget.direction == Axis.horizontal ? 10.0 : null,
+              top: widget.direction == Axis.horizontal ? null : 10.0,
+              child: Icon(Icons.add,
+                  size: SizerUtil.deviceType == DeviceType.tablet
+                      ? 7.0.w
+                      : 10.0.w,
+                  color: Theme.of(context).iconTheme.color!.withOpacity(0.7)),
+            ),
+            GestureDetector(
+              onHorizontalDragStart: _onPanStart,
+              onHorizontalDragUpdate: _onPanUpdate,
+              onHorizontalDragEnd: _onPanEnd,
+              child: SlideTransition(
+                position: _animation,
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Material(
+                    color: Theme.of(context).colorScheme.secondary,
+                    shape: const CircleBorder(),
+                    elevation: 5.0,
+                    child: Center(
+                      child: Icon(
+                        Icons.trip_origin,
+                        size: 40,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -179,6 +180,5 @@ class _Stepper2State extends State<CounterSlider>
     );
     _controller.animateWith(
         SpringSimulation(_kDefaultSpring, _startAnimationPosX, 0.0, 0.0));
-
   }
 }

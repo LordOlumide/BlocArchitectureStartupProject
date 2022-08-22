@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bloc_architecture_app/logic/cubit/counter_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:sizer/sizer.dart';
 
 class CounterContainer extends StatefulWidget {
   const CounterContainer({
@@ -36,8 +37,8 @@ class _CounterContainerState extends State<CounterContainer>
     _animationController.forward(from: 0.0);
 
     return Container(
-      width: 200,
-      height: 200,
+      width: 70.0.w,
+      height: 40.0.h,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         shape: BoxShape.circle,
@@ -53,7 +54,7 @@ class _CounterContainerState extends State<CounterContainer>
                 .toString(),
             style: Theme.of(context).textTheme.headline1!.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontSize: 100,
+                  fontSize: 80.0.sp,
                 ),
           ),
         ),
