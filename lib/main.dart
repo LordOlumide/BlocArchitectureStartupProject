@@ -60,7 +60,8 @@ class _CounterAppState extends State<CounterApp> with WidgetsBindingObserver {
       title: Strings.appTitle,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: context.select((ThemeCubit cubit) => cubit.state.themeMode),
+      themeMode: context.select<ThemeCubit, ThemeMode>(
+          (ThemeCubit cubit) => cubit.state.themeMode),
       debugShowCheckedModeBanner: false,
       initialRoute: AppRouter.home,
       onGenerateRoute: AppRouter.onGenerateRoute,
