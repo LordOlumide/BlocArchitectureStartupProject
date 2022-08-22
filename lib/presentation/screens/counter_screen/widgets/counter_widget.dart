@@ -18,11 +18,14 @@ class CounterContainer extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          BlocProvider.of<CounterCubit>(context).state.counterValue.toString(),
+          context
+              .select<CounterCubit, CounterState>((cubit) => cubit.state)
+              .counterValue
+              .toString(),
           style: Theme.of(context).textTheme.headline1!.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 130,
-          ),
+                fontWeight: FontWeight.bold,
+                fontSize: 130,
+              ),
         ),
       ),
     );

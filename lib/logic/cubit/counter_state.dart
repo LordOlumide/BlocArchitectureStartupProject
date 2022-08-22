@@ -5,6 +5,9 @@ class CounterState {
 
   CounterState({required this.counterValue});
 
-  factory CounterState.fromValue(int value) =>
-      CounterState(counterValue: value);
+  factory CounterState.fromMap(Map<String, dynamic> json) =>
+      CounterState(counterValue: json['counterValue']);
+
+  Map<String, dynamic> toMap() =>
+      {'counterValue': counterValue};
 }
