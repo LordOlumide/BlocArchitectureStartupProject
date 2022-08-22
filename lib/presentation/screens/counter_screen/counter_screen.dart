@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'widgets/animated_background.dart';
 import 'widgets/counter_slider.dart';
+import 'widgets/counter_widget.dart';
 
 class CounterScreen extends StatefulWidget {
   CounterScreen({Key? key, required this.title}) : super(key: key);
@@ -26,6 +27,10 @@ class _CounterScreenState extends State<CounterScreen> with TickerProviderStateM
               initialValue: 0,
               onChanged: (val) {},
             ),
+          ),
+          Positioned(
+            top: 100,
+            child: CounterContainer(),
           ),
         ],
       ),

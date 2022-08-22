@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'core/constants/strings.dart';
 import 'core/themes/app_theme.dart';
 import 'logic/debug/app_bloc_observer.dart';
 import 'presentation/router/app_router.dart';
 import 'logic/cubit/theme_cubit.dart';
+import 'logic/cubit/counter_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final storage = await HydratedStorage.build(
+      storageDirectory: await getApplicationDocumentsDirectory());
+
   Bloc.observer = AppBlocObserver();
-  runApp(App());
+
+  HydratedBlocOverrides.runZoned(
+    () => runApp(App()),
+    storage: storage,
+  );
 }
 
 class App extends StatelessWidget {
@@ -19,6 +31,9 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider<ThemeCubit>(
           create: (context) => ThemeCubit(),
+        ),
+        BlocProvider<CounterCubit>(
+          create: (context) => CounterCubit(),
         ),
       ],
       child: CounterApp(),
